@@ -1,0 +1,3 @@
+setup.kibana.host: "kibana:5601"
+
+output.elasticsearch.hosts: [ "http://kibana:5601" ]
