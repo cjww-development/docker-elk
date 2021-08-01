@@ -57,6 +57,7 @@ services:
       context: filebeat/
       args: 
         ELK_VERSION: $ELK_VERSION
+    user: root
     volumes:
       - type: bind
         source: ./filebeat/config/filebeat.yml
