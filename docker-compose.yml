@@ -59,10 +59,10 @@ services:
         ELK_VERSION: $ELK_VERSION
     user: root
     volumes:
-      - type: bind
-        source: ./filebeat/config/filebeat.yml
-        target: /usr/share/filebeat/filebeat.yml
-        read_only: true
+      # - type: bind
+      #   source: ./filebeat/config/filebeat.yml
+      #   target: /usr/share/filebeat/filebeat.yml
+      #   read_only: true
       - type: bind
         source: /var/lib/docker/containers
         target: /var/lib/docker/containers
