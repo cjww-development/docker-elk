@@ -23,6 +23,7 @@ services:
       # Use single node discovery in order to disable production mode and avoid bootstrap checks.
       # see: https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
       discovery.type: single-node
+    restart: always
     networks:
       - elk
 
@@ -47,6 +48,7 @@ services:
       - "9600:9600"
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    restart: always
     networks:
       - elk
     depends_on:
@@ -75,6 +77,7 @@ services:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
     networks:
       - elk
+    restart: always
     depends_on:
       - elasticsearch
 
@@ -90,6 +93,7 @@ services:
         read_only: true
     ports:
       - "5601:5601"
+    restart: always
     networks:
       - elk
     depends_on:
