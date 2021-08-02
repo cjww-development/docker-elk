@@ -6,6 +6,8 @@ services:
       context: elasticsearch/
       args:
         ELK_VERSION: $ELK_VERSION
+    container_name: elasticsearch
+    hostname: elasticsearch
     volumes:
       - type: bind
         source: ./elasticsearch/config/elasticsearch.yml
@@ -32,6 +34,8 @@ services:
       context: logstash/
       args:
         ELK_VERSION: $ELK_VERSION
+    container_name: logstash
+    hostname: logstash
     volumes:
       - type: bind
         source: ./logstash/config/logstash.yml
@@ -60,11 +64,9 @@ services:
       args: 
         ELK_VERSION: $ELK_VERSION
     user: root
+    container_name: filebeat
+    hostname: filebeat
     volumes:
-      # - type: bind
-      #   source: ./filebeat/config/filebeat.yml
-      #   target: /usr/share/filebeat/filebeat.yml
-      #   read_only: true
       - type: bind
         source: /var/lib/docker/containers
         target: /var/lib/docker/containers
@@ -86,6 +88,8 @@ services:
       context: kibana/
       args:
         ELK_VERSION: $ELK_VERSION
+    container_name: kibana
+    hostname: kibana
     volumes:
       - type: bind
         source: ./kibana/config/kibana.yml
