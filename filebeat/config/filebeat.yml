@@ -1,16 +1,18 @@
 # https://github.com/elastic/beats/blob/master/filebeat/filebeat.reference.yml
 
 filebeat.modules:
+- module: auditd
+  log:
+    enabled: true
+- module: elasticsearch
+- module: iptables
+- module: kibana
+- module: logstash
+- module: nginx
 - module: system
   syslog:
     enabled: true
   auth:
-    enabled: true
-- module: auditd
-  log:
-    # - Does not look like Auditd is supported in Alpine linux: https://github.com/linuxkit/linuxkit/issues/52
-    # - CentOS does not need us to install the audit system, it ships as standard. If you are using Ubuntu, though,
-    # this is probably something you would want to install. (sudo apt-get install -y auditd audispd-plugins)
     enabled: true
 
 #filebeat.inputs:
