@@ -16,6 +16,10 @@ services:
       - type: volume
         source: elasticsearch
         target: /usr/share/elasticsearch/data
+      - type: bind
+        source: /var/log
+        target: /var/log
+        read_only: false
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -45,6 +49,10 @@ services:
         source: ./logstash/pipeline
         target: /usr/share/logstash/pipeline
         read_only: true
+      - type: bind
+        source: /var/log
+        target: /var/log
+        read_only: false
     ports:
       - "5044:5044"
       - "5000:5000/tcp"
@@ -103,6 +111,10 @@ services:
         source: ./kibana/config/kibana.yml
         target: /usr/share/kibana/config/kibana.yml
         read_only: true
+      - type: bind
+        source: /var/log
+        target: /var/log
+        read_only: false
     ports:
       - "5601:5601"
     restart: always
