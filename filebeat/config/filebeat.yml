@@ -22,6 +22,23 @@ filebeat.modules:
 #    -/var/lib/docker/containers/*/*.log
 #  stream: all # can be all, stdout or stderr
 
+# Further indexes
+setup.template.pattern: "jenkins-server"
+setup.template.name: "jenkins-server-*"
+
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /var/log/jenkins/jenkins.log
+  multiline.pattern: '^[A-Z]{1}[a-z]{2} {1,2}[0-9]{1,2}, [0-9]{4} {1,2}[0-9]{1,2}:[0-9]{2}:[0-9]{2}'
+  multiline.negate: true
+  multiline.match: after
+  index: "jenkins-server-%{+yyyy.MM.dd}"
+
+
+
+
 #========================== Filebeat autodiscover ==============================
 # See this URL on how to run Apache2 Filebeat module: # https://www.elastic.co/guide/en/beats/filebeat/current/running-on-docker.html
 filebeat.autodiscover:
