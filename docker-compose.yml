@@ -24,7 +24,7 @@ services:
       - "9200:9200"
       - "9300:9300"
     environment:
-      ES_JAVA_OPTS: "-Xmx2Gm -Xms2Gm"
+      ES_JAVA_OPTS: "-Xmx2G -Xms2G"
       ELASTIC_PASSWORD: changeme
       # Use single node discovery in order to disable production mode and avoid bootstrap checks.
       # see: https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
@@ -67,7 +67,7 @@ services:
       - "5000:5000/udp"
       - "9600:9600"
     environment:
-      LS_JAVA_OPTS: "-Xmx1Gm -Xms1Gm"
+      LS_JAVA_OPTS: "-Xmx1G -Xms1G"
     mem_limit: 2g
     restart: always
     networks:
