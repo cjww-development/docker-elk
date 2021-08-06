@@ -62,7 +62,7 @@ output.elasticsearch:
   hosts: ["elasticsearch:9200"]
   username: elastic
   password: changeme
-  index: "filebeat-%{[agent.version]}-%{+yyyy.MM.dd}"
+  # index: "filebeat-%{[agent.version]}-%{+yyyy.MM.dd}"
   indices:
     - index: "filebeat-%{[agent.version]}-auditd-%{+yyyy.MM.dd}"
       when.equals:
