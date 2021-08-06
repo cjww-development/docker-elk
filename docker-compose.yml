@@ -1,4 +1,4 @@
-version: '3.2'
+version: '2.3'
 
 services:
   elasticsearch:
@@ -24,11 +24,19 @@ services:
       - "9200:9200"
       - "9300:9300"
     environment:
-      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+      ES_JAVA_OPTS: "-Xmx2Gm -Xms2Gm"
       ELASTIC_PASSWORD: changeme
       # Use single node discovery in order to disable production mode and avoid bootstrap checks.
       # see: https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
       discovery.type: single-node
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    mem_limit: 4g
     restart: always
     networks:
       - elk
@@ -59,7 +67,8 @@ services:
       - "5000:5000/udp"
       - "9600:9600"
     environment:
-      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+      LS_JAVA_OPTS: "-Xmx1Gm -Xms1Gm"
+    mem_limit: 2g
     restart: always
     networks:
       - elk
@@ -120,6 +129,7 @@ services:
     restart: always
     networks:
       - elk
+    mem_limit: 1g
     depends_on:
       - elasticsearch
 
