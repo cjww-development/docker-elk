@@ -23,8 +23,8 @@ filebeat.modules:
 #  stream: all # can be all, stdout or stderr
 
 # Further indexes
-setup.template.pattern: "jenkins-server"
-setup.template.name: "jenkins-server-*"
+# setup.template.pattern: "jenkins-server"
+# setup.template.name: "jenkins-server-*"
 
 # filebeat.inputs:
 # - type: log
@@ -62,6 +62,7 @@ output.elasticsearch:
   hosts: ["elasticsearch:9200"]
   username: elastic
   password: changeme
+  index: "filebeat-%{[agent.version]}-%{+yyyy.MM.dd}"
   indices:
     - index: "filebeat-%{[agent.version]}-auditd-%{+yyyy.MM.dd}"
       when.equals:
