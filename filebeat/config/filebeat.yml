@@ -63,27 +63,27 @@ output.elasticsearch:
   username: elastic
   password: changeme
   indices:
-    - index: "auditd-%{+yyyy.MM.dd}"
+    - index: "filebeat-%{[agent.version]}-auditd-%{+yyyy.MM.dd}"
       when.equals:
-        application: "auditd"
-    - index: "elasticsearch-%{+yyyy.MM.dd}"
+        event.module: "auditd"
+    - index: "filebeat-%{[agent.version]}-elasticsearch-%{+yyyy.MM.dd}"
       when.equals:
-        application: "elasticsearch"
-    - index: "iptables-%{+yyyy.MM.dd}"
+        event.module: "elasticsearch"
+    - index: "filebeat-%{[agent.version]}-iptables-%{+yyyy.MM.dd}"
       when.equals:
-        application: "iptables"
-    - index: "kibana-%{+yyyy.MM.dd}"
+        event.module: "iptables"
+    - index: "filebeat-%{[agent.version]}-kibana-%{+yyyy.MM.dd}"
       when.equals:
-        application: "kibana"
-    - index: "logstash-%{+yyyy.MM.dd}"
+        event.module: "kibana"
+    - index: "filebeat-%{[agent.version]}-logstash-%{+yyyy.MM.dd}"
       when.equals:
-        application: "logstash"
-    - index: "nginx-%{+yyyy.MM.dd}"
+        event.module: "logstash"
+    - index: "filebeat-%{[agent.version]}-nginx-%{+yyyy.MM.dd}"
       when.equals:
-        application: "nginx"
-    - index: "system-%{+yyyy.MM.dd}"
+        event.module: "nginx"
+    - index: "filebeat-%{[agent.version]}-system-%{+yyyy.MM.dd}"
       when.equals:
-        application: "system"
+        event.module: "system"
 
 #============================== Dashboards =====================================
 setup.dashboards:
